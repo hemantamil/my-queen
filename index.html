@@ -67,20 +67,42 @@
         }
 
         h1 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 2.8rem;
-            color: #fff;
-            margin: 0;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        p {
-            font-size: 1.1rem;
-            color: #f0f0f0;
-            margin: 15px 0 30px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-        }
-
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.5rem; /* Larger for the main title */
+    color: #ffffff;
+    margin-bottom: 10px;
+    /* Soft pink glow effect */
+    text-shadow: 0 0 10px rgba(255, 77, 109, 0.8), 2px 2px 4px rgba(0,0,0,0.3);
+    letter-spacing: 2px;
+}
+       h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    color: #ffb3c1; /* Soft romantic pink */
+    margin: 5px 0;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    font-weight: 600;
+}
+        h3 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8rem;
+    color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+    margin: 0;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    font-style: italic;
+}
+       p {
+    font-size: 1.1rem;
+    color: #ffffff;
+    margin: 15px 0 30px;
+    line-height: 1.6; /* Adds space between lines for readability */
+    letter-spacing: 1px; /* Makes it look high-end */
+    font-weight: 300;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+    background: rgba(255, 255, 255, 0.1); /* Very subtle highlight */
+    padding: 10px;
+    border-radius: 15px;
+}
         .btn-wrap {
             display: flex;
             flex-direction: column;
@@ -103,12 +125,25 @@
         .hidden { display: none; }
 
         .success-image {
-            width: 100%;
-            border-radius: 20px;
-            margin: 20px 0;
-            animation: zoomIn 0.8s ease-out;
-        }
+    width: 100%;
+    max-height: 300px; /* Keeps it from getting too long on tall phones */
+    border-radius: 20px;
+    margin: 20px 0;
+    object-fit: cover; /* Ensures the photo looks perfect */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4); /* Adds depth */
+    animation: zoomIn 0.8s ease-out;
+}
+      .typing-effect {
+  border-right: 2px solid white;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typing 3.5s steps(40, end), blink .75s step-end infinite;
+}
 
+@keyframes typing { from { width: 0 } to { width: 100% } }
+@keyframes blink { from, to { border-color: transparent } 50% { border-color: white } }
+
+      
         @keyframes zoomIn { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
     </style>
 </head>
@@ -118,12 +153,20 @@
     <audio id="afterSong" src="https://www.dropbox.com/scl/fi/q2bab7qybsdem2ywgabgn/New-Project.mp3?rlkey=20t0y2tmomwh9p59vy0fstwge&st=b5wlqmgc&raw=1" preload="auto"></audio>
 
     <div class="glass-card" id="mainCard">
+    <div style="font-family: monospace; font-size: 0.7rem; color: #fff; opacity: 0.7; margin-top: 10px;">
+    > Initializing Love.exe... <br>
+    > Searching for soulmate... <br>
+    > Match Found: Tamil Selvi [100%]
+</div>
         <div id="content">
             <div class="photo-container">
                 <img src="https://www.dropbox.com/scl/fi/21tt6u9b4wio75g2dxrp6/IMG_20260208_022007.jpg?rlkey=6j5hssznh1wd5gay7y4hpd3y0&st=33oo8rzi&raw=1" alt="Beautiful">
             </div>
             <h1>My Dearest...</h1>
-            <p>Will you make me the luckiest person and be mine forever?</p>
+             <h2>Tamil Selvi</h2>
+            <p>I didn't believe in 'meant to be' until I met you. You make my life better just by being in it. I want to spend every sunrise and sunset by your side</p>
+             <h3> Will you be mine forever?</h3>
+
             <div class="btn-wrap">
                 <button class="btn" id="yesBtn" onclick="accept(event)">YES! ❤️</button>
                 <button class="btn" id="noBtn" onmouseover="dodge()" ontouchstart="dodge()">No</button>
@@ -131,9 +174,9 @@
         </div>
 
         <div id="success" class="hidden">
-            <h1 style="font-size: 3.5rem;">Yess! 💍</h1>
-            <img src="https://i.ibb.co/twMQfV5m/Gemini-Generated-Image-tgzmxttgzmxttgzm.png" alt="Together Forever" class="success-image">
-            <p>I love you more than words can say! ❤️</p>
+            <h1 style="font-size: 3.5rem;">Maaa...! 💍</h1>
+            <img src="https://i.ibb.co/CgnGLLJ/ht.png" alt="Together Forever" class="success-image">
+            <p>I am Always there for u Maa! ❤️</p>
         </div>
     </div>
 
@@ -150,16 +193,23 @@
         }
 
         function createSnowHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('snow-heart');
-            heart.innerHTML = '❤️';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
-            heart.style.opacity = Math.random() * 0.7;
-            heart.style.fontSize = Math.random() * 15 + 10 + 'px';
-            document.body.appendChild(heart);
-            setTimeout(() => heart.remove(), 5000);
-        }
+    const heart = document.createElement('div');
+    heart.classList.add('snow-heart');
+    
+    // Mix it up with different icons
+    const icons = ['❤️', '💖', '✨', '🌸'];
+    heart.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+    
+    heart.style.left = Math.random() * 100 + 'vw';
+    // Randomize fall speed for a natural look
+    heart.style.animationDuration = Math.random() * 5 + 3 + 's'; 
+    heart.style.opacity = Math.random() * 0.8;
+    heart.style.filter = `blur(${Math.random() * 2}px)`; // Some hearts are focused, some are blurred
+    heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+    
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+}
         setInterval(createSnowHeart, 300);
 
         function dodge() {
